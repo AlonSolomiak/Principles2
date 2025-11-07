@@ -3,7 +3,7 @@ dx = 0.01
 K = 5
 
 def get_table_from_file():
-    with open("C:\\Users\\tkuis\\Documents\\Github\\Princples2\\Principles2\\Lab1\\temp_2D.txt", "r") as f:
+    with open("C:\\Users\\tkuis\\Documents\\Github\\Princples2\\Principles2\\Lab1\\temp_2D_hw.txt", "r") as f:
         return [[float(num) for num in line.split(" ")] for line in f]
 
 def find_max(A):
@@ -67,11 +67,11 @@ def find_flux_Y(k,A):
 T_table = get_table_from_file()
 print("Max T: " + str(find_max(T_table)))
 print("Min T: " + str(find_min(T_table)))
-print_table(T_table, "Section C - Temprature Distribution", "X (cm)", "Y (cm)", "T [K]")
+print_table(T_table, "Temprature Distribution", "X [cm]", "Y [cm]", "T [K]")
 Flux_x_table = find_flux_X(K, T_table)
-print_table(Flux_x_table, "Section D - Distribution of Heat Flux in X direction", "X (cm)", "Y (cm)", "Flux_x [W/m^2]")
+print_table(Flux_x_table, "Distribution of Heat Flux in X direction", "X [cm]", "Y [cm]", "Flux X [W/m^2]")
 Flux_y_table = find_flux_Y(K, T_table)
-print_table(Flux_y_table, "Section D - Distribution of Heat Flux in Y direction", "X (cm)", "Y (cm)", "Flux_y [W/m^2]")
+print_table(Flux_y_table, "Distribution of Heat Flux in Y direction", "X [cm]", "Y [cm]", "Flux Y [W/m^2]")
 print("Max Flux X: " + str(find_max(Flux_x_table)))
 print("Min Flux X: " + str(find_min(Flux_x_table)))
 print("Max Flux Y: " + str(find_max(Flux_y_table)))
