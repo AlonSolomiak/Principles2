@@ -48,7 +48,7 @@ def find_flux_X(k, table):
         flux_X[row].append(-1 * k * forward_diference(table[row][0], table[row][1], dx))
         for col in range(1, len(table[row]) - 1):
             flux_X[row].append(-1 * k * central_diference(table[row][col-1], table[row][col+1], dx))
-        flux_X[row].append(-1 * k * backward_diference(table[row][len(A[row])-2], table[row][len(table[row])-1], dx))
+        flux_X[row].append(-1 * k * backward_diference(table[row][len(table[row])-2], table[row][len(table[row])-1], dx))
 
     return flux_X
 
