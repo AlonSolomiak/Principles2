@@ -6,21 +6,21 @@ def get_table_from_file():
     with open("C:\\Users\\tkuis\\Documents\\Github\\Princples2\\Principles2\\Lab1\\temp_2D_hw.txt", "r") as f:
         return [[float(num) for num in line.split(" ")] for line in f]
 
-def find_max(A):
-    max = A[0][0]
-    for i in range(len(A)):
-        for j in range(len(A[i])):
-            if A[i][j] > max:
-                max = A[i][j]
+def find_max(table):
+    max = table[0][0]
+    for i in range(len(table)):
+        for j in range(len(table[i])):
+            if table[i][j] > max:
+                max = table[i][j]
     
     return max
 
-def find_min(A):
-    min = A[0][0]
-    for i in range(len(A)):
-        for j in range(len(A[i])):
-            if A[i][j] < min:
-                min = A[i][j]
+def find_min(table):
+    min = table[0][0]
+    for i in range(len(table)):
+        for j in range(len(table[i])):
+            if table[i][j] < min:
+                min = table[i][j]
     
     return min
 
@@ -42,23 +42,23 @@ def backward_diference(f0, f1, dx):
 def central_diference(f0, f2, dx):
     return (f2-f0)/(2*dx)
 
-def find_flux_X(k, A):
-    flux_X = [[] for row in range(len(A))]
-    for row in range(len(A)):
-        flux_X[row].append(-1 * k * forward_diference(A[row][0], A[row][1], dx))
-        for col in range(1, len(A[row]) - 1):
-            flux_X[row].append(-1 * k * central_diference(A[row][col-1], A[row][col+1], dx))
-        flux_X[row].append(-1 * k * backward_diference(A[row][len(A[row])-2], A[row][len(A[row])-1], dx))
+def find_flux_X(k, table):
+    flux_X = [[] for row in range(len(table))]
+    for row in range(len(table)):
+        flux_X[row].append(-1 * k * forward_diference(table[row][0], table[row][1], dx))
+        for col in range(1, len(table[row]) - 1):
+            flux_X[row].append(-1 * k * central_diference(table[row][col-1], table[row][col+1], dx))
+        flux_X[row].append(-1 * k * backward_diference(table[row][len(A[row])-2], table[row][len(table[row])-1], dx))
 
     return flux_X
 
-def find_flux_Y(k,A):
-    flux_Y = [[] for row in range(len(A))]
-    for col in range(len(A[0])):
-        flux_Y[0].append(-1 * k * forward_diference(A[0][col], A[1][col], dx))
-        for row in range(1, len(A) - 1):
-            flux_Y[row].append(-1 * k * central_diference(A[row-1][col], A[row+1][col], dx))
-        flux_Y[len(A)-1].append(-1 * k * backward_diference(A[len(A)-2][col], A[len(A)-1][col], dx))
+def find_flux_Y(k,table):
+    flux_Y = [[] for row in range(len(table))]
+    for col in range(len(table[0])):
+        flux_Y[0].append(-1 * k * forward_diference(table[0][col], table[1][col], dx))
+        for row in range(1, len(table) - 1):
+            flux_Y[row].append(-1 * k * central_diference(table[row-1][col], table[row+1][col], dx))
+        flux_Y[len(table)-1].append(-1 * k * backward_diference(table[len(table)-2][col], table[len(table)-1][col], dx))
 
     return flux_Y
 
