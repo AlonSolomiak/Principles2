@@ -3,10 +3,12 @@ dx = 0.01
 K = 5
 path = "C:\\Users\\tkuis\\Documents\\Github\\Princples2\\Principles2\\Lab1\\"
 
+# Section a
 def get_table_from_file():
     with open(path + "temp_2D.txt", "r") as f:
         return [[float(num) for num in line.split(" ")] for line in f]
 
+# Section b
 def find_max(table):
     max = table[0][0]
     for i in range(len(table)):
@@ -25,6 +27,7 @@ def find_min(table):
     
     return min
 
+# Section c
 def print_table(A, title, xlabel, ylabel, label):
     extent = 0, len(A)-1, 0, len(A[0])-1
     plt.imshow(A, cmap=plt.cm.plasma, interpolation='bicubic', extent=extent, origin='lower')
@@ -34,6 +37,7 @@ def print_table(A, title, xlabel, ylabel, label):
     plt.ylabel(ylabel)
     plt.show()
 
+# Section d
 def forward_diference(f1, f2, dx):
     return (f2-f1)/dx
 
@@ -63,6 +67,7 @@ def find_flux_Y(k,table):
 
     return flux_Y
 
+# Section e
 def print_plots(Xs, Ys, titles, xlabels, ylabels):
 
     fig, axes = plt.subplots(len(Xs), 1)
@@ -83,6 +88,12 @@ def create_file(path, table):
                 f.write(str(value) + " ")
             f.write("\n")
 
+# Section f
+def caclulate_heat_flowrate_per_width(flux_table, row):
+    Q_dot_per_width = 0
+    for col in range(len(flux_table[row])):
+        Q_dot_per_width += flux_table[row][col] * dx
+    return Q_dot_per_width
 
 
 def main():
@@ -108,7 +119,8 @@ def main():
     create_file(path + "tempY4.txt", [range(len(T_table[4])), T_table[4]])
     create_file(path + "YfluxY4.txt", [range(len(Flux_y_table[4])), Flux_y_table[4]])
     print("////section f////")
-
+    print("total heat flowrate per unit width via y = 0.04 m is " + str(caclulate_heat_flowrate_per_width(Flux_y_table, 6)) + " W/m")
+    print(Flux_x_table)
 
 if __name__ == "__main__":
     main()
