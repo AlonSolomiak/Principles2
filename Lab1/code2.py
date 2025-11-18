@@ -3,7 +3,7 @@ dx = 0.01
 K = 5
 
 def get_table_from_file():
-    with open("C:\\Users\\tkuis\\Documents\\Github\\Princples2\\Principles2\\Lab1\\temp_2D_hw.txt", "r") as f:
+    with open("C:\\Users\\tkuis\\Documents\\Github\\Princples2\\Principles2\\Lab1\\temp_2D.txt", "r") as f:
         return [[float(num) for num in line.split(" ")] for line in f]
 
 def find_max(table):
@@ -62,17 +62,34 @@ def find_flux_Y(k,table):
 
     return flux_Y
 
+def print_plots(Xs, Ys, titles, xlabels, ylabels):
+
+    fig, axes = plt.subplots(len(Xs), 1)
+
+    for i in range(len(Xs)):
+        axes[i].plot(Xs[i], Ys[i])
+        axes[i].set_title(titles[i])
+        axes[i].set_xlabel(xlabels[i])
+        axes[i].set_ylabel(ylabels[i])
+
+    plt.tight_layout()
+    plt.show()
+
 
 
 T_table = get_table_from_file()
-print("Max T: " + str(find_max(T_table)))
-print("Min T: " + str(find_min(T_table)))
+print("////section b////")
+print("min temp: " + str(find_min(T_table)))
+print("max temp: " + str(find_max(T_table)))
 print_table(T_table, "Temprature Distribution", "X [cm]", "Y [cm]", "T [K]")
 Flux_x_table = find_flux_X(K, T_table)
 print_table(Flux_x_table, "Distribution of Heat Flux in X direction", "X [cm]", "Y [cm]", "Flux X [W/m^2]")
 Flux_y_table = find_flux_Y(K, T_table)
 print_table(Flux_y_table, "Distribution of Heat Flux in Y direction", "X [cm]", "Y [cm]", "Flux Y [W/m^2]")
-print("Max Flux X: " + str(find_max(Flux_x_table)))
-print("Min Flux X: " + str(find_min(Flux_x_table)))
-print("Max Flux Y: " + str(find_max(Flux_y_table)))
-print("Min Flux Y: " + str(find_min(Flux_y_table)))
+print("////section d////")
+print("max q''x: " + str(find_max(Flux_x_table)))
+print("min q''x: " + str(find_min(Flux_x_table)))
+print("max q''y: " + str(find_max(Flux_y_table)))
+print("min q''y: " + str(find_min(Flux_y_table)))
+print_plots([range(len(T_table[4])), range(len(Flux_y_table[4]))], [T_table[4], Flux_y_table[4]], ["Temperature as a Function of x on y=4cm", "q''y as a Function of x on y=4cm"], ["x [cm]", "x [cm]"], ["T [K]", "q''y [W/m^2]"])
+print("////section f////")
