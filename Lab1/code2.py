@@ -1,9 +1,10 @@
 import matplotlib.pyplot as plt
 dx = 0.01
 K = 5
+path = "C:\\Users\\tkuis\\Documents\\Github\\Princples2\\Principles2\\Lab1\\"
 
 def get_table_from_file():
-    with open("C:\\Users\\tkuis\\Documents\\Github\\Princples2\\Principles2\\Lab1\\temp_2D.txt", "r") as f:
+    with open(path + "temp_2D.txt", "r") as f:
         return [[float(num) for num in line.split(" ")] for line in f]
 
 def find_max(table):
@@ -75,6 +76,13 @@ def print_plots(Xs, Ys, titles, xlabels, ylabels):
     plt.tight_layout()
     plt.show()
 
+def create_file(path, table):
+    with open(path, "w") as f:
+        for row in table:
+            for value in row:
+                f.write(str(value) + " ")
+            f.write("\n")
+
 
 
 def main():
@@ -92,7 +100,13 @@ def main():
     print("min q''x: " + str(find_min(Flux_x_table)))
     print("max q''y: " + str(find_max(Flux_y_table)))
     print("min q''y: " + str(find_min(Flux_y_table)))
-    print_plots([range(len(T_table[4])), range(len(Flux_y_table[4]))], [T_table[4], Flux_y_table[4]], ["Temperature as a Function of x on y=4cm", "q''y as a Function of x on y=4cm"], ["x [cm]", "x [cm]"], ["T [K]", "q''y [W/m^2]"])
+    print_plots([range(len(T_table[4])), range(len(Flux_y_table[4]))],
+                [T_table[4], Flux_y_table[4]],
+                ["Temperature as a Function of x on y=4cm", "q''y as a Function of x on y=4cm"],
+                ["x [cm]", "x [cm]"],
+                ["T [K]", "q''y [W/m^2]"])
+    create_file(path + "tempY4.txt", [range(len(T_table[4])), T_table[4]])
+    create_file(path + "YfluxY4.txt", [range(len(Flux_y_table[4])), Flux_y_table[4]])
     print("////section f////")
 
 
