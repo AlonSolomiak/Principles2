@@ -5,7 +5,7 @@ path = "C:\\Users\\tkuis\\Documents\\Github\\Princples2\\Principles2\\Lab1\\"
 
 # Section a
 def get_table_from_file():
-    with open(path + "temp_2D.txt", "r") as f:
+    with open(path + "temp_2D_hw.txt", "r") as f:
         return [[float(num) for num in line.split(" ")] for line in f]
 
 # Section b
@@ -111,16 +111,15 @@ def main():
     print("min q''x: " + str(find_min(Flux_x_table)))
     print("max q''y: " + str(find_max(Flux_y_table)))
     print("min q''y: " + str(find_min(Flux_y_table)))
-    print_plots([range(len(T_table[4])), range(len(Flux_y_table[4]))],
-                [T_table[4], Flux_y_table[4]],
-                ["Temperature as a Function of x on y=4cm", "q''y as a Function of x on y=4cm"],
+    print_plots([range(len(T_table[7])), range(len(Flux_y_table[7]))],
+                [T_table[7], Flux_y_table[7]],
+                ["Temperature as a Function of x on y=7cm", "q''y as a Function of x on y=7cm"],
                 ["x [cm]", "x [cm]"],
                 ["T [K]", "q''y [W/m^2]"])
-    create_file(path + "tempY4.txt", [range(len(T_table[4])), T_table[4]])
-    create_file(path + "YfluxY4.txt", [range(len(Flux_y_table[4])), Flux_y_table[4]])
+    create_file(path + "tempY7.txt", [range(len(T_table[7])), T_table[7]])
+    create_file(path + "YfluxY7.txt", [range(len(Flux_y_table[7])), Flux_y_table[7]])
     print("////section f////")
-    print("total heat flowrate per unit width via y = 0.04 m is " + str(caclulate_heat_flowrate_per_width(Flux_y_table, 6)) + " W/m")
-    print(Flux_x_table)
+    print("total heat flowrate per unit width via y = 0.07 m is " + str(caclulate_heat_flowrate_per_width(Flux_y_table, 6)) + " W/m")
 
 if __name__ == "__main__":
     main()
